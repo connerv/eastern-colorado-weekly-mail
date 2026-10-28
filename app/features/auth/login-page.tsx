@@ -1,5 +1,6 @@
 import * as React from "react";
 import { toast } from "sonner";
+import { EcwWordmark } from "@/components/brand/ecw-wordmark";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { signIn } from "./api";
@@ -44,11 +45,9 @@ export function LoginPage({ onLogin }: LoginPageProps): React.ReactElement {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-rail px-4 py-12">
+    <main className="ecw-auth flex min-h-screen items-center justify-center bg-rail px-4 py-12">
       <div className="w-full max-w-md">
-        <div className="mb-10 flex items-center justify-center gap-2">
-          <img alt="" className="h-7 w-auto rounded-md object-contain" src="/logo.svg" />
-        </div>
+        <EcwWordmark />
         <section className="overflow-hidden rounded-[24px] border bg-sidebar shadow-sm">
           <header className="px-6 pb-2 pt-5">
             <h1 className="text-xl font-semibold tracking-tight">Sign in</h1>

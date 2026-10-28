@@ -3,21 +3,21 @@ export type AppTheme = "light" | "dark";
 export const themeStorageKey = "hqb_theme_v1";
 
 const themeColors: Record<AppTheme, string> = {
-  dark: "#0f0f10",
-  light: "#fafafa"
+  dark: "#18201c",
+  light: "#f5f0e6"
 };
 
 export function readStoredTheme(): AppTheme {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   try {
     return normalizeTheme(window.localStorage.getItem(themeStorageKey));
   } catch {
-    return "dark";
+    return "light";
   }
 }
 
 export function normalizeTheme(value: string | null): AppTheme {
-  return value === "light" ? "light" : "dark";
+  return value === "dark" ? "dark" : "light";
 }
 
 export function applyTheme(theme: AppTheme): void {

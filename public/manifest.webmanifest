@@ -1,13 +1,13 @@
 {
   "id": "/",
-  "name": "HQBase",
-  "short_name": "HQBase",
-  "description": "HQBase shared webmail for your Cloudflare account.",
+  "name": "Eastern Colorado Weekly Mail",
+  "short_name": "ECW Mail",
+  "description": "Staff webmail for Eastern Colorado Weekly.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f0f10",
-  "theme_color": "#0f0f10",
+  "background_color": "#f5f0e6",
+  "theme_color": "#f5f0e6",
   "categories": ["business", "productivity", "utilities"],
   "icons": [
     {

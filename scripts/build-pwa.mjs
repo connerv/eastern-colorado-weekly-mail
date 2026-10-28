@@ -9,6 +9,7 @@ const allowedPrecachePaths = [
   /^\/sounds\//,
   /^\/favicon\.svg$/,
   /^\/logo\.svg$/,
+  /^\/ecw-icon\.svg$/,
   /^\/manifest\.webmanifest$/,
   /^\/offline\.html$/
 ];
@@ -80,8 +81,8 @@ self.addEventListener("push", (event) => {
       : 0;
   const body =
     unreadCount === 1
-      ? "1 unread message in HQBase"
-      : \`\${unreadCount} unread messages in HQBase\`;
+      ? "1 unread message in ECW Mail"
+      : \`\${unreadCount} unread messages in ECW Mail\`;
   const tasks = [
     self.registration.showNotification("New email", {
       badge: "/icons/notification-badge.png",

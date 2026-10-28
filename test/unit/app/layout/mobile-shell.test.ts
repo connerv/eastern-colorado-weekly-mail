@@ -95,9 +95,9 @@ describe("mobile application shell", () => {
     expect(sidebar).toContain("safe-area-inset-top");
     expect(sidebar).toContain("safe-area-inset-bottom");
     expect(styles).toContain("background-color: hsl(var(--surface-list))");
-    expect(indexHtml).toContain('<meta name="theme-color" content="#0f0f10" />');
-    expect(theme).toContain('dark: "#0f0f10"');
-    expect(theme).toContain('light: "#fafafa"');
+    expect(indexHtml).toContain('<meta name="theme-color" content="#f5f0e6" />');
+    expect(theme).toContain('dark: "#18201c"');
+    expect(theme).toContain('light: "#f5f0e6"');
   });
 
   it("keeps compact right sheets and composer controls clear of device safe areas", () => {

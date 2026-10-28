@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Eastern Colorado Weekly</title>
+  <defs>
+    <clipPath id="tile">
+      <rect x="2" y="2" width="60" height="60" rx="14"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect x="2" y="2" width="60" height="60" fill="#18201c"/>
+    <path d="M7 10h5v44H7Z" fill="#d8613c"/>
+    <text
+      x="11"
+      y="42"
+      fill="#fffdf7"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="20"
+      font-style="italic"
+      font-weight="700"
+      letter-spacing="-2"
+    >ECW</text>
+    <path d="M14 49h38" stroke="#d6d9b0" stroke-linecap="round" stroke-width="3"/>
+  </g>
+</svg>

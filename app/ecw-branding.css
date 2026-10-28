@@ -1,0 +1,188 @@
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DM-Sans-Latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Newsreader;
+  src: url("/fonts/Newsreader-Latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+:root {
+  --background: 40 43% 93%;
+  --foreground: 150 14% 11%;
+  --card: 45 100% 98%;
+  --card-foreground: 150 14% 11%;
+  --popover: 45 100% 98%;
+  --popover-foreground: 150 14% 11%;
+  --primary: 155 36% 22%;
+  --primary-foreground: 45 100% 98%;
+  --secondary: 38 34% 87%;
+  --secondary-foreground: 150 14% 11%;
+  --muted: 38 30% 88%;
+  --muted-foreground: 150 9% 36%;
+  --accent: 18 52% 88%;
+  --accent-foreground: 12 70% 31%;
+  --border: 37 21% 77%;
+  --input: 37 18% 66%;
+  --focus-border: 12 70% 37%;
+  --surface-rail: 40 43% 93%;
+  --surface-sidebar: 39 35% 89%;
+  --surface-toolbar: 45 100% 98%;
+  --surface-list: 40 43% 93%;
+  --surface-reader: 45 100% 98%;
+  --surface-selected: 145 19% 83%;
+  --surface-hover: 38 31% 86%;
+  --divider-subtle: 37 21% 79%;
+  --text-tertiary: 150 8% 39%;
+  --ecw-orange: #9f351c;
+  --radius: 0.375rem;
+}
+
+.dark {
+  --background: 150 14% 11%;
+  --foreground: 40 43% 93%;
+  --card: 143 16% 15%;
+  --card-foreground: 40 43% 93%;
+  --popover: 143 16% 15%;
+  --popover-foreground: 40 43% 93%;
+  --primary: 64 34% 77%;
+  --primary-foreground: 150 14% 11%;
+  --secondary: 145 18% 20%;
+  --secondary-foreground: 40 43% 93%;
+  --muted: 145 18% 18%;
+  --muted-foreground: 134 10% 72%;
+  --accent: 145 20% 24%;
+  --accent-foreground: 40 43% 93%;
+  --border: 143 13% 30%;
+  --input: 143 13% 36%;
+  --focus-border: 20 74% 70%;
+  --surface-rail: 150 14% 11%;
+  --surface-sidebar: 143 16% 15%;
+  --surface-toolbar: 143 16% 15%;
+  --surface-list: 150 14% 11%;
+  --surface-reader: 143 16% 13%;
+  --surface-selected: 145 20% 24%;
+  --surface-hover: 145 18% 20%;
+  --divider-subtle: 143 13% 27%;
+  --text-tertiary: 134 10% 68%;
+  --ecw-orange: #ef9a76;
+}
+
+body {
+  font-family: "DM Sans", Inter, system-ui, sans-serif;
+}
+
+.ecw-masthead {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.ecw-wordmark {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0 9px;
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(28px, 5vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+.ecw-wordmark span {
+  font-style: italic;
+}
+.ecw-wordmark strong {
+  color: var(--ecw-orange);
+  font-weight: 650;
+}
+.ecw-wordmark:focus-visible {
+  outline: 2px solid hsl(var(--focus-border));
+  outline-offset: 6px;
+}
+.ecw-eyebrow {
+  margin: 16px 0 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.5;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+.ecw-auth > div {
+  max-width: 460px;
+}
+.ecw-auth section {
+  border-radius: 6px;
+  border-top: 3px solid hsl(var(--primary));
+}
+.ecw-auth section > header {
+  padding: 28px 28px 8px;
+}
+.ecw-auth section > header h1 {
+  font-family: Newsreader, Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+.ecw-auth section > form {
+  padding: 16px 28px 28px;
+  gap: 20px;
+}
+.ecw-auth input {
+  min-height: 46px;
+}
+.ecw-auth button[type="submit"] {
+  min-height: 46px;
+  border-radius: 4px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  box-shadow: none;
+}
+.ecw-auth button[type="submit"]:hover {
+  filter: brightness(1.12);
+}
+.ecw-attribution {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ecw-attribution a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+}
+.ecw-attribution img {
+  height: 13px;
+  width: auto;
+  outline: none;
+}
+@media (max-width: 380px) {
+  .ecw-auth section > header {
+    padding-inline: 22px;
+  }
+  .ecw-auth section > form {
+    padding-inline: 22px;
+  }
+}
+
+:root .btn-liquid-glass {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary));
+  box-shadow: none;
+}
+:root .btn-liquid-glass:hover {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  filter: brightness(1.1);
+  box-shadow: none;
+}

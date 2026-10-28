@@ -15,7 +15,7 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = React.createContext<ThemeContextValue>({
-  theme: "dark",
+  theme: "light",
   setTheme: () => undefined
 });
 
