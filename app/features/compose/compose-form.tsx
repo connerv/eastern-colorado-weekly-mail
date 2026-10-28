@@ -116,6 +116,9 @@ export function ComposeForm(props: ComposeFormProps): React.ReactElement {
           {props.replyMessage ? (
             <ReplyQuotePreview messages={props.replyMessages} target={props.replyMessage} />
           ) : null}
+          <p className="border-t px-5 py-2 text-xs text-muted-foreground">
+            Attachments and inline images: 3 MiB total. Use sharing links for larger files.
+          </p>
           <AttachmentList
             attachments={props.attachments}
             includedAttachments={props.includedAttachments}
