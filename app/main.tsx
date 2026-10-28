@@ -6,6 +6,7 @@ import { PwaLifecycle } from "./features/pwa/pwa-lifecycle";
 import { initializeTheme } from "./features/theme/theme";
 import { ThemeProvider } from "./features/theme/theme-provider";
 import "./styles.css";
+import "./ecw-branding.css";
 
 async function loadRootComponent(): Promise<React.ComponentType> {
   if (import.meta.env.DEV && window.location.pathname === "/__ui/design") {

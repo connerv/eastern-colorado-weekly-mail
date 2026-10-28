@@ -4,15 +4,15 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const logo = await readFile(path.join(root, "public/logo.svg"), "utf8");
+const logo = await readFile(path.join(root, "public/ecw-icon.svg"), "utf8");
 const browser = await chromium.launch({ headless: true });
 
 try {
   for (const icon of [
-    { background: "#080808", file: "icon-512.png", markWidth: 308, size: 512 },
-    { background: "#080808", file: "icon-192.png", markWidth: 115, size: 192 },
-    { background: "#080808", file: "apple-touch-icon.png", markWidth: 108, size: 180 },
-    { background: "#080808", file: "icon-maskable-512.png", markWidth: 266, size: 512 },
+    { background: "#f5f0e6", file: "icon-512.png", markWidth: 308, size: 512 },
+    { background: "#f5f0e6", file: "icon-192.png", markWidth: 115, size: 192 },
+    { background: "#f5f0e6", file: "apple-touch-icon.png", markWidth: 108, size: 180 },
+    { background: "#f5f0e6", file: "icon-maskable-512.png", markWidth: 266, size: 512 },
     {
       background: "transparent",
       file: "notification-badge.png",

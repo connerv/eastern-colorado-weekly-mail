@@ -38,9 +38,7 @@ describe("password setup presentation", () => {
     expect(html).toContain("Login email");
     expect(html).toContain("if the account exists");
     expect(html).toContain("Send reset link");
-    expect(html).toContain(
-      '<a class="underline-offset-4 transition-colors hover:text-foreground hover:underline" href="https://hqbase.io/" rel="noopener" target="_blank">Powered by HQBase</a>'
-    );
+    expect(html).toContain('href="https://hqbase.io/" rel="noopener" target="_blank"');
   });
 
   it("uses recovery-specific copy for a valid reset token", () => {

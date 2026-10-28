@@ -87,7 +87,7 @@ export function Sidebar({
               handleSectionChange("inbox");
             }}
           >
-            <img alt="" className="size-7 rounded-md object-contain" src="/logo.svg" />
+            <img alt="" className="size-7 rounded-md object-contain" src="/ecw-icon.svg" />
           </a>
           <div className={cn("mt-5 flex flex-col gap-1", isDrawer && "w-full items-center")}>
             {quickAccess.map(({ folder, icon: Icon, label }) => {
@@ -155,7 +155,7 @@ export function Sidebar({
                     ? "Agents"
                     : activeFolder === "contacts"
                       ? "Contacts"
-                      : "Mail"}
+                      : "ECW Mail"}
               </span>
             </div>
             {onToggleSidebar ? (

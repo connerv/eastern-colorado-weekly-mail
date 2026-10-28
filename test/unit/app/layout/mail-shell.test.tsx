@@ -64,10 +64,10 @@ describe("mail shell", () => {
 
     expect(html).toContain("h-12 w-full");
     expect(html).toContain("relative min-w-0 max-w-xl flex-1");
-    expect(html).toContain("Search HQBase");
+    expect(html).toContain("Search ECW Mail");
     expect(html).not.toContain("Connect MCP");
     expect(html).toContain("Open navigation");
-    expect(html.indexOf("Open navigation")).toBeLessThan(html.indexOf("Search HQBase"));
+    expect(html.indexOf("Open navigation")).toBeLessThan(html.indexOf("Search ECW Mail"));
   });
 
   it("keeps unread totals out of the header mailbox label", () => {
@@ -210,7 +210,7 @@ describe("mail shell", () => {
       />
     );
 
-    expect(html).toContain(">Mail</span>");
+    expect(html).toContain(">ECW Mail</span>");
     expect(html).not.toContain("data-connection-status");
   });
 
@@ -226,7 +226,7 @@ describe("mail shell", () => {
       />
     );
 
-    expect(html).toContain('src="/logo.svg"');
+    expect(html).toContain('src="/ecw-icon.svg"');
     expect(html).toContain('href="/mail/inbox"');
     expect(html).toContain('href="/mail/catch-all"');
     expect(html).toContain('href="/settings/mailboxes"');
@@ -255,13 +255,14 @@ describe("mail shell", () => {
     expect(html).toContain("hover:bg-selected");
   });
 
-  it("uses the canonical logo on the signed-out surface", () => {
+  it("shows the publication wordmark and HQBase attribution on sign-in", () => {
     const html = renderToStaticMarkup(<LoginPage onLogin={() => undefined} />);
 
     expect(html).toContain('src="/logo.svg"');
-    expect(html).toContain(
-      '<a class="underline-offset-4 transition-colors hover:text-foreground hover:underline" href="https://hqbase.io/" rel="noopener" target="_blank">Powered by HQBase</a>'
-    );
+    expect(html).toContain('href="https://hqbase.io/" rel="noopener" target="_blank"');
+    expect(html).toContain("Eastern Colorado");
+    expect(html).toContain("Weekly");
+    expect(html).toContain("Powered by HQBase");
     expect(html).not.toContain(">HQ</span>");
   });
 

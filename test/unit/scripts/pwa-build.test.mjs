@@ -20,9 +20,9 @@ describe("PWA build contract", () => {
   it("ships an installable, standalone manifest", async () => {
     const manifest = JSON.parse(await readFile("public/manifest.webmanifest", "utf8"));
     expect(() => validateManifest(manifest)).not.toThrow();
-    expect(manifest.name).toBe("HQBase");
-    expect(manifest.background_color).toBe("#0f0f10");
-    expect(manifest.theme_color).toBe("#0f0f10");
+    expect(manifest.name).toBe("Eastern Colorado Weekly Mail");
+    expect(manifest.background_color).toBe("#f5f0e6");
+    expect(manifest.theme_color).toBe("#f5f0e6");
   });
 
   it("keeps lifecycle metadata revalidated and hashed assets immutable", async () => {
@@ -37,8 +37,8 @@ describe("PWA build contract", () => {
     expect(html).toContain('rel="icon" href="/favicon.svg" type="image/svg+xml"');
     expect(html).toContain('rel="apple-touch-icon"');
     expect(html).toContain("viewport-fit=cover");
-    expect(html).toContain('<meta name="theme-color" content="#0f0f10" />');
-    expect(iconGenerator).toContain('readFile(path.join(root, "public/logo.svg"), "utf8")');
+    expect(html).toContain('<meta name="theme-color" content="#f5f0e6" />');
+    expect(iconGenerator).toContain('readFile(path.join(root, "public/ecw-icon.svg"), "utf8")');
     expect(iconGenerator).toContain('file: "apple-touch-icon.png", markWidth: 108');
     expect(iconGenerator).toContain('file: "icon-512.png", markWidth: 308');
     expect(iconGenerator).toContain('file: "icon-maskable-512.png", markWidth: 266');
@@ -47,7 +47,7 @@ describe("PWA build contract", () => {
     expect(logo).toContain("<title>HQBase</title>");
     expect(logo).not.toContain('fill="black"');
     expect(logo).toContain('id="paint0_linear_68_26"');
-    expect(favicon).toContain('width="191" height="191" viewBox="30.5 25.5 191 191"');
+    expect(favicon).toContain('viewBox="0 0 64 64"');
     expect(favicon).not.toContain('fill="black"');
     expect(headers).toMatch(/\/service-worker\.js[\s\S]*no-cache, no-store, must-revalidate/);
     expect(headers).toMatch(/\/assets\/\*[\s\S]*max-age=31536000, immutable/);

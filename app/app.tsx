@@ -85,7 +85,7 @@ export function App(): React.ReactElement {
   React.useEffect(() => {
     document.title = currentUserId
       ? mailDocumentTitle(mailSync.notifications.unread, mailboxId, selectedMailboxAddress)
-      : "HQBase";
+      : "Eastern Colorado Weekly Mail";
   }, [currentUserId, mailboxId, mailSync.notifications.unread, selectedMailboxAddress]);
 
   const loadWorkspace = React.useCallback(async (currentUser: CurrentUser) => {

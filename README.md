@@ -1,3 +1,12 @@
+# Eastern Colorado Weekly mail customization
+
+This fork holds the ECW appearance changes based on HQBase Stable v1.4.0. See
+[ECW-BRANDING.md](ECW-BRANDING.md) for the appearance rules, review scope, and update notes.
+The branded preview uses a local database with synthetic messages. It has not replaced the live
+signed Stable installation. The original HQBase source, license, and attribution are preserved.
+
+---
+
 <p align="center">
   <a href="https://hqbase.io/">
     <img src="public/logo.svg" alt="HQBase" width="118">

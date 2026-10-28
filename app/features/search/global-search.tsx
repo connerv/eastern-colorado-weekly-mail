@@ -141,11 +141,11 @@ export function GlobalSearch({
         aria-autocomplete="list"
         aria-controls={listOpen ? listId : undefined}
         aria-expanded={listOpen}
-        aria-label="Search HQBase"
+        aria-label="Search ECW Mail"
         autoComplete="off"
         className="border-transparent bg-muted/70 pl-8 pr-9 text-xs shadow-none"
         maxLength={200}
-        placeholder="Search HQBase"
+        placeholder="Search ECW Mail"
         role="combobox"
         size="sm"
         spellCheck={false}
