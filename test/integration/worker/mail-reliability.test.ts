@@ -4,7 +4,12 @@ import { createAuth } from "../../../worker/auth/auth";
 import type { ParsedEmail } from "../../../worker/email/parse-email";
 import { parseRawEmail } from "../../../worker/email/parse-email";
 import { storeInboundEmail } from "../../../worker/email/store-email";
-import { getDraft, saveDraft } from "../../../worker/features/drafts/queries";
+import { storeDraftAttachment } from "../../../worker/features/drafts/attachments";
+import {
+  getDraft,
+  removeDraftAttachment,
+  saveDraft
+} from "../../../worker/features/drafts/queries";
 import { labelsForThreadIds } from "../../../worker/features/labels/queries";
 import { getMessageDetail } from "../../../worker/features/messages/queries";
 import { sendNewMessage } from "../../../worker/features/send/service";
@@ -498,6 +503,84 @@ describe("Mail integrity and concurrency regressions", () => {
     const stored = await getMessageDetail(env.DB, result.message.id, env.MAIL_OBJECTS);
     expect(stored?.textBody).toBe(parsed.textBody);
     expect(stored?.replyTo).toEqual(["customer@example.net"]);
+  });
+
+  it("keeps an oversized outgoing draft editable and sends once after files are removed", async () => {
+    const draft = await saveDraft(env.DB, userId, draftInput);
+    const attachment = await storeDraftAttachment(
+      env,
+      userId,
+      draft.id,
+      new File([new Uint8Array(3 * 1024 * 1024 + 1)], "large-fixture.bin"),
+      false
+    );
+    const send = vi.fn().mockResolvedValue({ messageId: "provider-size-recovery" });
+    const bindings = { ...env, MAIL_SENDER: { send } } as unknown as WorkerEnv;
+    const input = { ...draftInput, draftId: draft.id, attachmentIds: [attachment.id] };
+    await expect(sendNewMessage(bindings, input, userId)).rejects.toMatchObject({
+      code: "ATTACHMENTS_TOO_LARGE",
+      status: 413
+    });
+    expect(send).not.toHaveBeenCalled();
+    expect(
+      await env.DB.prepare("SELECT COUNT(*) AS n FROM send_operations WHERE draft_id = ?")
+        .bind(draft.id)
+        .first<number>("n")
+    ).toBe(0);
+    const saved = await getDraft(env.DB, userId, draft.id);
+    expect(saved?.attachments.map((item) => item.id)).toContain(attachment.id);
+    if (!saved) throw new Error("Draft was lost");
+    await saveDraft(env.DB, userId, {
+      ...draftInput,
+      id: draft.id,
+      version: saved.version,
+      text: "Use a sharing link"
+    });
+    await removeDraftAttachment(env.DB, env.MAIL_OBJECTS, userId, draft.id, attachment.id);
+    const sent = await sendNewMessage(
+      bindings,
+      { ...input, text: "Use a sharing link", attachmentIds: [] },
+      userId
+    );
+    expect(
+      (
+        await sendNewMessage(
+          bindings,
+          { ...input, text: "Use a sharing link", attachmentIds: [] },
+          userId
+        )
+      ).id
+    ).toBe(sent.id);
+    expect(send).toHaveBeenCalledOnce();
+  });
+
+  it("rejects a combined Unicode body and attachment budget before locking its draft", async () => {
+    const body = "😀".repeat(40_000);
+    const content = { ...draftInput, text: body, html: `<p>${body}</p>` };
+    const draft = await saveDraft(env.DB, userId, content);
+    const attachment = await storeDraftAttachment(
+      env,
+      userId,
+      draft.id,
+      new File([new Uint8Array(3 * 1024 * 1024)], "fixture.bin"),
+      false
+    );
+    const send = vi.fn();
+    const bindings = { ...env, MAIL_SENDER: { send } } as unknown as WorkerEnv;
+    await expect(
+      sendNewMessage(
+        bindings,
+        { ...content, draftId: draft.id, attachmentIds: [attachment.id] },
+        userId
+      )
+    ).rejects.toMatchObject({ code: "MESSAGE_TOO_LARGE", status: 413 });
+    expect(send).not.toHaveBeenCalled();
+    const saved = await getDraft(env.DB, userId, draft.id);
+    if (!saved) throw new Error("Draft was lost");
+    expect(saved.attachments).toHaveLength(1);
+    await expect(
+      saveDraft(env.DB, userId, { ...draftInput, id: draft.id, version: saved.version })
+    ).resolves.toBeTruthy();
   });
 
   it("blocks a second provider call after an uncertain outcome and locks the draft", async () => {

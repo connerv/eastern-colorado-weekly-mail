@@ -2,6 +2,7 @@ import type { WorkerEnv } from "../../lib/env";
 import { AppError } from "../../lib/errors";
 import { cleanupUnstoredObjects, stageOutgoingAttachments } from "./attachment-storage";
 import type { StoredOutgoingAttachment } from "./content-attachments";
+import { requireMessageSize } from "./message-size";
 import {
   acceptSend,
   markSendUnknown,
@@ -19,6 +20,7 @@ export async function deliverPreparedMail(
   email: Parameters<SendEmail["send"]>[0],
   attachments: StoredOutgoingAttachment[]
 ) {
+  requireMessageSize(email);
   await stageOutgoingAttachments(env.MAIL_OBJECTS, attachments);
   const operation = await reserveSend(env, identity, payload);
   if (!operation) {

@@ -15,7 +15,7 @@ import type { SignatureSnapshot } from "../signatures/types";
 
 import type { MessageBodyPart } from "./body";
 
-export const maxAttachmentBytes = 25 * 1024 * 1024;
+export const maxAttachmentBytes = 3 * 1024 * 1024;
 export const maxAttachmentCount = 20;
 
 type StoredDraftAttachment = Awaited<ReturnType<typeof draftAttachmentObjects>>[number];
@@ -199,7 +199,11 @@ export function requireAttachmentLimits(attachments: StoredOutgoingAttachment[])
     );
   }
   if (totalAttachmentBytes(attachments) > maxAttachmentBytes) {
-    throw new AppError("ATTACHMENTS_TOO_LARGE", "Attachments may total at most 25 MiB.", 413);
+    throw new AppError(
+      "ATTACHMENTS_TOO_LARGE",
+      "Attachments and inline images may total at most 3 MiB. Use sharing links for larger files.",
+      413
+    );
   }
 }
 
