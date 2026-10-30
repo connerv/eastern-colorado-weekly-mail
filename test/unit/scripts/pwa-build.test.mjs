@@ -34,7 +34,9 @@ describe("PWA build contract", () => {
       readFile("public/favicon.svg", "utf8")
     ]);
     expect(html).toContain('rel="manifest" href="/manifest.webmanifest"');
-    expect(html).toContain('rel="icon" href="/favicon.svg" type="image/svg+xml"');
+    expect(html).toContain(
+      'rel="icon" href="/favicon.svg?v=ecw-wheat-mail-1" type="image/svg+xml"'
+    );
     expect(html).toContain('rel="apple-touch-icon"');
     expect(html).toContain("viewport-fit=cover");
     expect(html).toContain('<meta name="theme-color" content="#f5f0e6" />');

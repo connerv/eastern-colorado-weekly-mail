@@ -1,23 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <title>Eastern Colorado Weekly</title>
-  <defs>
-    <clipPath id="tile">
-      <rect x="2" y="2" width="60" height="60" rx="14"/>
-    </clipPath>
-  </defs>
-  <g clip-path="url(#tile)">
-    <rect x="2" y="2" width="60" height="60" fill="#18201c"/>
-    <path d="M7 10h5v44H7Z" fill="#d8613c"/>
-    <text
-      x="11"
-      y="42"
-      fill="#fffdf7"
-      font-family="Georgia, 'Times New Roman', serif"
-      font-size="20"
-      font-style="italic"
-      font-weight="700"
-      letter-spacing="-2"
-    >ECW</text>
-    <path d="M14 49h38" stroke="#d6d9b0" stroke-linecap="round" stroke-width="3"/>
-  </g>
+  <title>Eastern Colorado Weekly Mail</title>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="#244d3c"/>
+  <g transform="translate(22.4 4) scale(.6)" fill="currentColor" color="#ce9a45"><path d="M16 15C10 11 11 5 16 2C21 5 22 11 16 15ZM14 23C6 22 3 17 3 13C10 13 14 17 14 23ZM18 23C26 22 29 17 29 13C22 13 18 17 18 23ZM14 31C6 30 3 25 3 21C10 21 14 25 14 31ZM18 31C26 30 29 25 29 21C22 21 18 25 18 31ZM14 39C6 38 3 33 3 29C10 29 14 33 14 39ZM18 39C26 38 29 33 29 29C22 29 18 33 18 39Z"/>
+<path d="M16 13V46" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></g>
+  <rect x="10" y="28" width="44" height="28" rx="4" fill="#fffdf7"/>
+  <path d="M12 30L32 44L52 30" fill="none" stroke="#244d3c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

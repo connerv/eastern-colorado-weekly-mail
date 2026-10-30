@@ -5,6 +5,7 @@ import { chromium } from "@playwright/test";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const logo = await readFile(path.join(root, "public/ecw-icon.svg"), "utf8");
+const wheat = await readFile(path.join(root, "public/ecw-wheat.svg"), "utf8");
 const browser = await chromium.launch({ headless: true });
 
 try {
@@ -16,7 +17,7 @@ try {
     {
       background: "transparent",
       file: "notification-badge.png",
-      markWidth: 68,
+      markWidth: 52,
       monochrome: true,
       size: 96
     }
@@ -47,12 +48,13 @@ try {
         }
         ${
           icon.monochrome
-            ? `svg rect, svg path { fill: #fff !important; }
+            ? `svg g { color: #fff !important; }
+        svg rect, svg path { fill: #fff !important; }
         svg stop { stop-color: #fff !important; }`
             : ""
         }
       </style>
-      ${logo}`,
+      ${icon.monochrome ? wheat : logo}`,
       { waitUntil: "load" }
     );
     await page.screenshot({
